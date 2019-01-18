@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_patient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".PatientActivity">
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_text"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/patient_names"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/surname_text"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/patient_surname"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/birth_date_text"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/birth_date"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/age_text"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/age"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sex_layout"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sex_text"
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="@string/sex"/>
+
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sex_image"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_marginEnd="5dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_delete"/>
+
+
+        </LinearLayout>
+
+
+
+        <Button
+                android:text="@string/blood_tests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_blood_tests"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"/>
+        <Button
+                android:text="@string/graphs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_graphs"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
