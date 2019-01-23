@@ -1,7 +1,6 @@
 package com.mjkrajsman.bloodtesttracker.viewmodel
 
-import android.arch.lifecycle.ViewModel
-import com.mjkrajsman.bloodtesttracker.ColorInterface
+import androidx.lifecycle.ViewModel
 
 /**
  * Created by: Maciej Janusz Krajsman

@@ -1,16 +1,18 @@
 package com.mjkrajsman.bloodtesttracker
 
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.design.widget.NavigationView
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.navigation.NavigationView
+import androidx.core.view.GravityCompat
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.room.Room
+import com.mjkrajsman.bloodtesttracker.model.db.AppDatabase
 import com.mjkrajsman.bloodtesttracker.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -50,6 +52,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //button listeners TODO: replace with final content of MainActivity
         button_patient_list.setOnClickListener(this::showPatientListActivity)
         button_random_patient.setOnClickListener(this::showPatientActivity)
+
+
     }
 
     //---===DrawerLayout actions===--- TODO: implement those

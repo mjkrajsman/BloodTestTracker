@@ -1,4 +1,4 @@
-package com.mjkrajsman.bloodtesttracker
+package com.mjkrajsman.bloodtesttracker.viewmodel
 
 import android.graphics.Color
 import java.util.*

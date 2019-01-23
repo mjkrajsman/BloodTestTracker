@@ -1,19 +1,25 @@
 package com.mjkrajsman.bloodtesttracker.viewmodel
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import com.mjkrajsman.bloodtesttracker.ColorInterface
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.mjkrajsman.bloodtesttracker.model.Patient
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
 import com.mjkrajsman.bloodtesttracker.model.RandomPatientGenerator
+import com.mjkrajsman.bloodtesttracker.model.db.AppDatabase
 
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class PatientListViewModel: ViewModel(), ColorInterface {
+class PatientListViewModel(application: Application): AndroidViewModel(application), ColorInterface {
     //TODO: LiveData? Dummy data should be replaced by permanent data set in the future.
     //TODO: Data for the View should be stored here
-    //private val patients: MutableLiveData<MutableList<PatientItem>> = MutableLiveData()
+    //private val patients: LiveData<List<Patient>>? = null
+
+    //private val aDb: AppDatabase? = null
+
 
     //---===get data from Model (for View)===---
 

@@ -2,8 +2,8 @@ package com.mjkrajsman.bloodtesttracker
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
 import com.mjkrajsman.bloodtesttracker.viewmodel.PatientViewModel
 import kotlinx.android.synthetic.main.activity_patient.*
@@ -54,7 +54,7 @@ class PatientActivity : AppCompatActivity() {
 
         if(patientItem!=null) {
             age_text.text = resources.getQuantityString(R.plurals.patient_age_template, patientItem.age, patientItem.age)
-            if (patientItem.sex) {
+            if (patientItem.isMale) {
                 sex_image.setImageDrawable(getDrawable(R.drawable.ic_male_3))
             } else {
                 sex_image.setImageDrawable(getDrawable(R.drawable.ic_female_3))

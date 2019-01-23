@@ -1,6 +1,6 @@
 package com.mjkrajsman.bloodtesttracker.recycler
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
 import com.mjkrajsman.bloodtesttracker.*
@@ -33,8 +33,8 @@ class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val birthDateAgeString = itemView.context.resources.getQuantityString(R.plurals.patient_birth_date_age_template, patientItem.age,
             patientItem.birthDate.toLocalDate().toString(), patientItem.age)
         birthDateAgeTextView.text = birthDateAgeString
-        //sex
-        if(patientItem.sex) {
+        //isMale
+        if(patientItem.isMale) {
             sexImageView.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_male_3_blue))
         }else{
             sexImageView.setImageDrawable(itemView.context.getDrawable(R.drawable.ic_female_3_pink))
