@@ -9,32 +9,39 @@ import com.mjkrajsman.bloodtesttracker.model.Patient
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
 import com.mjkrajsman.bloodtesttracker.model.RandomPatientGenerator
 import com.mjkrajsman.bloodtesttracker.model.db.AppDatabase
+import com.mjkrajsman.bloodtesttracker.model.db.PatientDAO
+import com.mjkrajsman.bloodtesttracker.repo.PatientRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Created by: Maciej Janusz Krajsman
  */
 class PatientListViewModel(application: Application): AndroidViewModel(application), ColorInterface {
-    //TODO: LiveData? Dummy data should be replaced by permanent data set in the future.
-    //TODO: Data for the View should be stored here
-    //private val patients: LiveData<List<Patient>>? = null
+    //TODO: Dummy data should be replaced by permanent data set in the future.
+    private val repository: PatientRepository
+    val patients: LiveData<List<Patient>>
+    private var parentJob = Job()
+    private val coroutineContext: CoroutineContext
+        get() = parentJob + Dispatchers.Main
+    private val scope = CoroutineScope(coroutineContext)
 
-    //private val aDb: AppDatabase? = null
-
-
-    //---===get data from Model (for View)===---
-
-    //generates random data to fill RecyclerView
-    fun getRandomPatientList(): MutableList<PatientItem>{
-        return RandomPatientGenerator.generateDummyData() //from model
+    init {
+        val patientDAO = AppDatabase.getDatabase(application, scope).patientDAO()
+        repository = PatientRepository(patientDAO)
+        patients = repository.listLiveData
     }
 
-    fun getPatientList(){
-        //TODO: implement this //from model
+    fun insert(patient: Patient) = scope.launch(Dispatchers.IO) {
+        repository.insert(patient)
     }
 
-    //---===Model data management===---
-    fun addPatient(){
-        //TODO: implement this //to model
+    override fun onCleared() {
+        super.onCleared()
+        parentJob.cancel()
     }
 
 }

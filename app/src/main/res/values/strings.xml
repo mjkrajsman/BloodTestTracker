@@ -41,6 +41,47 @@
         <item quantity="one">Age: %1$d year</item>
         <item quantity="other">Age: %1$d years</item>
     </plurals>
-
-
+    <string name="date">Date: </string>
+    <string name="date_template">Date: %1$s</string>
+    <string name="red_blood_cells">RBC: </string>
+    <string name="red_blood_cells_template">RBC: %1$.2f</string>
+    <string name="white_blood_cells">WBC: </string>
+    <string name="white_blood_cells_template">WBC: %1$.2f</string>
+    <string name="platelets">PLT: </string>
+    <string name="platelets_template">PLT: %1$.2f</string>
+    <string name="hemoglobin">HGB: </string>
+    <string name="hemoglobin_template">HGB: %1$.2f</string>
+    <string name="hematocrit">HCT: </string>
+    <string name="hematocrit_template">HCT: %1$.2f</string>
+    <string name="mean_corpuscular_volume">MCV: </string>
+    <string name="mean_corpuscular_volume_template">MCV: %1$.2f</string>
+    <string name="mean_corpuscular_hemoglobin">MCH: </string>
+    <string name="mean_corpuscular_hemoglobin_template">MCH: %1$.2f</string>
+    <string name="mean_corpuscular_hemoglobin_concentration">MCHC: </string>
+    <string name="mean_corpuscular_hemoglobin_concentration_template">MCHC: %1$.2f</string>
+    <string name="mean_platelet_volume">MPV: </string>
+    <string name="mean_platelet_volume_template">MPV: %1$.2f</string>
+    <string name="red_cell_distribution_width">RDW: </string>
+    <string name="red_cell_distribution_width_template">RDW: %1$.2f</string>
+    <string name="neutrophil_count">NE#: </string>
+    <string name="neutrophil_count_template">NE#: %1$.2f</string>
+    <string name="basophil_count">BA#: </string>
+    <string name="basophil_count_template">BA#: %1$.2f</string>
+    <string name="eosinophil_count">EO#: </string>
+    <string name="eosinophil_count_template">EO#: %1$.2f</string>
+    <string name="lymphocyte_count">LY#: </string>
+    <string name="lymphocyte_count_template">LY#: %1$.2f</string>
+    <string name="monocyte_count">MO#: </string>
+    <string name="monocyte_count_template">MO#: %1$.2f</string>
+    <string name="neutrophil_percent">NE%%: </string>
+    <string name="neutrophil_percent_template">NE%%: %1$.2f</string>
+    <string name="basophil_percent">BA%%: </string>
+    <string name="basophil_percent_template">BA%%: %1$.2f</string>
+    <string name="eosinophil_percent">EO%%: </string>
+    <string name="eosinophil_percent_template">EO%%: %1$.2f</string>
+    <string name="lymphocyte_percent">LY%%: </string>
+    <string name="lymphocyte_percent_template">LY%%: %1$.2f</string>
+    <string name="monocyte_percent">MO%%: </string>
+    <string name="monocyte_percent_template">MO%%: %1$.2f</string>
+    <string name="dash">—</string>
 </resources>

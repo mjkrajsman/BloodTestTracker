@@ -26,12 +26,12 @@
             android:layout_marginEnd="5dp"
             android:layout_alignEnd="@id/patient_image"
             android:layout_alignBottom="@id/patient_image"
-    />
+            android:contentDescription="@string/sex"/>
 
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/patient_text_layout"
             android:layout_toEndOf="@id/patient_image">
 

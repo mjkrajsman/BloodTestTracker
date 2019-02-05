@@ -11,7 +11,6 @@ import org.joda.time.DateTime
 /**
  * Created by: Maciej Janusz Krajsman
  */
-
 @Entity(tableName = "blood_tests", foreignKeys = [ForeignKey(
     entity = Patient::class,
     parentColumns = arrayOf("id"),
@@ -20,7 +19,7 @@ import org.joda.time.DateTime
 )
 data class BloodTest(
     @NonNull @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id:Int,
-    @ColumnInfo(name = "patient_id") var patientId:Int,
+    @NonNull  @ColumnInfo(name = "patient_id", index = true) var patientId:Int,
     @NonNull @ColumnInfo(name = "test_date") var testDate: Long,
     @ColumnInfo(name = "red_blood_cells") var redBloodCells: Float?,
     @ColumnInfo(name = "white_blood_cells") var whiteBloodCells: Float?,
@@ -36,12 +35,12 @@ data class BloodTest(
     @ColumnInfo(name = "basophil_count") var basophilCount: Float?,
     @ColumnInfo(name = "eosinophil_count") var eosinophilCount: Float?,
     @ColumnInfo(name = "lymphocyte_count") var lymphocyteCount: Float?,
-    @ColumnInfo(name = "basocyte_count") var basocyteCount: Float?,
+    @ColumnInfo(name = "monocyte_count") var monocyteCount: Float?,
     @ColumnInfo(name = "neutrophil_percent") var neutrophilPercent: Float?,
     @ColumnInfo(name = "basophil_percent") var basophilPercent: Float?,
     @ColumnInfo(name = "eosinophil_percent") var eosinophilPercent: Float?,
     @ColumnInfo(name = "lymphocyte_percent") var lymphocytePercent: Float?,
-    @ColumnInfo(name = "basocyte_percent") var basocytePercent: Float?
+    @ColumnInfo(name = "monocyte_percent") var monocytePercent: Float?
 ): DateTimeMillisConverterInterface {
 
     //TODO: use in constructor?

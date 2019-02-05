@@ -8,6 +8,7 @@
         tools:context=".PatientListActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_patient_list"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:theme="@style/AppTheme.AppBarOverlay">

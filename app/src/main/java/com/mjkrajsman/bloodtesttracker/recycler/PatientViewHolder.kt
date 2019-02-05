@@ -41,7 +41,10 @@ class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         }
 
         //---===onClick action===---
-        patientItemLayout.setOnClickListener { onItemClicked(patientItem) }
+        patientItemLayout.setOnClickListener {
+            onItemClicked(patientItem)
+        }
+
     }
 
 }

@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.room.Room
-import com.mjkrajsman.bloodtesttracker.model.db.AppDatabase
 import com.mjkrajsman.bloodtesttracker.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -24,7 +22,6 @@ import net.danlew.android.joda.JodaTimeAndroid
  */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val viewModel: MainViewModel by lazy { ViewModelProviders.of(this).get(MainViewModel::class.java) }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +36,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .setAction("Action", null).show()
         }
 
+        main_toolbar.setBackgroundColor(viewModel.getRandomColor())
+
         //---===DrawerLayout===---
         val toggle = ActionBarDrawerToggle(
             this, main_drawer_layout, main_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -51,9 +50,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //button listeners TODO: replace with final content of MainActivity
         button_patient_list.setOnClickListener(this::showPatientListActivity)
-        button_random_patient.setOnClickListener(this::showPatientActivity)
-
-
     }
 
     //---===DrawerLayout actions===--- TODO: implement those
@@ -110,12 +106,4 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .putExtra("color", viewModel.getRandomColor())
         startActivity(intent)
     }
-
-    //dummy function
-    private fun showPatientActivity(view: View) {
-        val intent = Intent(this, PatientActivity::class.java)
-            .putExtra("color", viewModel.getRandomColor())
-        startActivity(intent)
-    }
-
 }

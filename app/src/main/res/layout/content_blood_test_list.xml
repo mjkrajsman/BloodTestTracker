@@ -9,10 +9,10 @@
         android:layout_height="match_parent"
         tools:context=".BloodTestListActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/patient_names"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/blood_test_list_recycler_view"
+    />
 
 </androidx.core.widget.NestedScrollView>

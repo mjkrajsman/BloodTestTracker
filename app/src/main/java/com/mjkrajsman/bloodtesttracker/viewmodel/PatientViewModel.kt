@@ -1,15 +1,12 @@
 package com.mjkrajsman.bloodtesttracker.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.mjkrajsman.bloodtesttracker.model.PatientItem
 
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class PatientViewModel: ViewModel(){
-    //---===get data from Model (for View)===---
-    //TODO: get PatientItem
-    //TODO:
-
-    //---===Model data management===---
-    //TODO: implement if necessary
+class PatientViewModel(application: Application, item: PatientItem?): AndroidViewModel(application), ColorInterface {
+    val patientItem: PatientItem? = item
 }

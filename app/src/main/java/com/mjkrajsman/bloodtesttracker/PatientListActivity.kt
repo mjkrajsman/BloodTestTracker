@@ -2,10 +2,10 @@ package com.mjkrajsman.bloodtesttracker
 
 import androidx.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mjkrajsman.bloodtesttracker.recycler.PatientAdapter
@@ -23,9 +23,7 @@ class PatientListActivity : AppCompatActivity() {
     //---===RecyclerView===---
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
-    //TODO: after providing normal data source - replace viewModel.getRandomPatientList() with getPatientList()
-    private val viewAdapter by lazy { PatientAdapter(viewModel.getRandomPatientList(), this::showPatientActivity)}
-
+    private val viewAdapter by lazy { PatientAdapter(this::showPatientActivity, this)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +36,7 @@ class PatientListActivity : AppCompatActivity() {
         }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        //get toolbar color from intent
-        patient_list_toolbar.setBackgroundColor(extractColorFromIntent())
+        patient_list_toolbar.setBackgroundColor(viewModel.getRandomColor())
 
         //---===RecyclerView===---
         viewManager = LinearLayoutManager(this)
@@ -48,20 +45,16 @@ class PatientListActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
-    }
 
-    //---===data extraction from intent===---
-    private fun extractColorFromIntent(): Int {
-        return intent.getIntExtra("color", Color.BLACK)
+        viewModel.patients.observe(this, Observer { items ->
+            items?.let { viewAdapter.setItems(it) }
+        })
     }
 
     //---===data input to intent===---
-    //TODO: store and pass data in another way? PatientItem should be accessible by ViewModel.
     private fun showPatientActivity(patientItem: PatientItem) {
         val intent = Intent(this, PatientActivity::class.java)
-            .putExtra("color", viewModel.getRandomColor())
             .putExtra("patientItem", patientItem)
         startActivity(intent)
     }
-
 }

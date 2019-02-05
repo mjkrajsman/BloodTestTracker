@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_graph.*
  * Created by: Maciej Janusz Krajsman
  */
 class GraphActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_graph)

@@ -15,15 +15,14 @@ data class PatientItem(
     val isMale: Boolean,
     val age: Int
                 ): Serializable {
-
     constructor(patient: Patient): this(
-        patient.id,
-        patient.firstName,
-        patient.secondName,
-        patient.surname,
-        patient.getBirthDateFromLong(),
-        patient.isMale,
-        patient.getAge()
+        id = patient.id,
+        firstName = patient.firstName,
+        secondName = patient.secondName,
+        surname = patient.surname,
+        birthDate = patient.getBirthDateFromLong(),
+        isMale = patient.isMale,
+        age = patient.getAge()
     )
 
 }

@@ -5,7 +5,6 @@ import org.joda.time.DateTime
 /**
  * Created by: Maciej Janusz Krajsman
  */
-
 interface DateTimeMillisConverterInterface {
 
     fun millisToDateTime(m: Long): DateTime {
