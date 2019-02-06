@@ -11,6 +11,8 @@ import com.mjkrajsman.bloodtesttracker.viewmodel.BloodTestViewModel
 import com.mjkrajsman.bloodtesttracker.viewmodel.BloodTestViewModelFactory
 import kotlinx.android.synthetic.main.activity_blood_test.*
 import kotlinx.android.synthetic.main.content_blood_test.*
+import java.util.Objects.isNull
+
 
 /**
  * Created by: Maciej Janusz Krajsman
@@ -60,28 +62,42 @@ class BloodTestActivity : AppCompatActivity() {
         }
     }
 
+    private fun createDisplayValue(value: Float?, alt: String): String{
+        return if(value!=null){
+            String.format("%.2f", value)
+        }else{
+            alt
+        }
+    }
+
+    private fun getDisplayLine(templateId: Int, value: Float?): String{
+        return getString(templateId, createDisplayValue(value, getString(R.string.dash)))
+    }
+
     private fun updateUIBloodTestData(item: BloodTestItem){
         test_date_text.text = getString(R.string.date_template, item.testDate.toLocalDate().toString())
-        red_blood_cells_text.text = getString(R.string.red_blood_cells_template, item.redBloodCells)
-        white_blood_cells_text.text = getString(R.string.white_blood_cells_template, item.whiteBloodCells)
-        platelets_text.text = getString(R.string.platelets_template, item.platelets)
-        hemoglobin_text.text = getString(R.string.hemoglobin_template, item.hemoglobin)
-        hematocrit_text.text = getString(R.string.hematocrit_template, item.hematocrit)
-        mean_corpuscular_volume_text.text = getString(R.string.mean_corpuscular_volume_template, item.meanCorpuscularVolume)
-        mean_corpuscular_hemoglobin_text.text = getString(R.string.mean_corpuscular_hemoglobin_template, item.meanCorpuscularHemoglobin)
-        mean_corpuscular_hemoglobin_concentration_text.text = getString(R.string.mean_corpuscular_hemoglobin_concentration_template, item.meanCorpuscularHemoglobinConcentration)
-        red_cell_distribution_width_text.text = getString(R.string.red_cell_distribution_width_template, item.redCellDistributionWidth)
-        mean_platelet_volume_text.text = getString(R.string.mean_platelet_volume_template, item.meanPlateletVolume)
-        neutrophil_count_text.text = getString(R.string.neutrophil_count_template, item.neutrophilCount)
-        basophil_count_text.text = getString(R.string.basophil_count_template, item.basophilCount)
-        eosinophil_count_text.text = getString(R.string.eosinophil_count_template, item.eosinophilCount)
-        lymphocyte_count_text.text = getString(R.string.lymphocyte_count_template, item.lymphocyteCount)
-        monocyte_count_text.text = getString(R.string.monocyte_count_template, item.monocyteCount)
-        neutrophil_percent_text.text = getString(R.string.neutrophil_percent_template, item.neutrophilPercent)
-        basophil_percent_text.text = getString(R.string.basophil_percent_template, item.basophilPercent)
-        eosinophil_percent_text.text = getString(R.string.eosinophil_percent_template, item.eosinophilPercent)
-        lymphocyte_percent_text.text = getString(R.string.lymphocyte_percent_template, item.lymphocytePercent)
-        monocyte_percent_text.text = getString(R.string.monocyte_percent_template, item.monocytePercent)
+        //red_blood_cells_text.text = getString(R.string.red_blood_cells_template, item.redBloodCells)
+        //red_blood_cells_text.text = getString(R.string.red_blood_cells_template, createDisplayValue(item.redBloodCells, getString(R.string.dash)))
+        red_blood_cells_text.text = getDisplayLine(R.string.red_blood_cells_template, item.redBloodCells)
+        white_blood_cells_text.text = getDisplayLine(R.string.white_blood_cells_template, item.whiteBloodCells)
+        platelets_text.text = getDisplayLine(R.string.platelets_template, item.platelets)
+        hemoglobin_text.text = getDisplayLine(R.string.hemoglobin_template, item.hemoglobin)
+        hematocrit_text.text = getDisplayLine(R.string.hematocrit_template, item.hematocrit)
+        mean_corpuscular_volume_text.text = getDisplayLine(R.string.mean_corpuscular_volume_template, item.meanCorpuscularVolume)
+        mean_corpuscular_hemoglobin_text.text = getDisplayLine(R.string.mean_corpuscular_hemoglobin_template, item.meanCorpuscularHemoglobin)
+        mean_corpuscular_hemoglobin_concentration_text.text = getDisplayLine(R.string.mean_corpuscular_hemoglobin_concentration_template, item.meanCorpuscularHemoglobinConcentration)
+        red_cell_distribution_width_text.text = getDisplayLine(R.string.red_cell_distribution_width_template, item.redCellDistributionWidth)
+        mean_platelet_volume_text.text = getDisplayLine(R.string.mean_platelet_volume_template, item.meanPlateletVolume)
+        neutrophil_count_text.text = getDisplayLine(R.string.neutrophil_count_template, item.neutrophilCount)
+        basophil_count_text.text = getDisplayLine(R.string.basophil_count_template, item.basophilCount)
+        eosinophil_count_text.text = getDisplayLine(R.string.eosinophil_count_template, item.eosinophilCount)
+        lymphocyte_count_text.text = getDisplayLine(R.string.lymphocyte_count_template, item.lymphocyteCount)
+        monocyte_count_text.text = getDisplayLine(R.string.monocyte_count_template, item.monocyteCount)
+        neutrophil_percent_text.text = getDisplayLine(R.string.neutrophil_percent_template, item.neutrophilPercent)
+        basophil_percent_text.text = getDisplayLine(R.string.basophil_percent_template, item.basophilPercent)
+        eosinophil_percent_text.text = getDisplayLine(R.string.eosinophil_percent_template, item.eosinophilPercent)
+        lymphocyte_percent_text.text = getDisplayLine(R.string.lymphocyte_percent_template, item.lymphocytePercent)
+        monocyte_percent_text.text = getDisplayLine(R.string.monocyte_percent_template, item.monocytePercent)
     }
 
     //---===data extraction from intent===---

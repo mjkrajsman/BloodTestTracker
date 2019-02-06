@@ -79,8 +79,16 @@ class PatientActivity : AppCompatActivity() {
     private fun showBloodTestListActivity(view: View) {
         val intent = Intent(this, BloodTestListActivity::class.java)
             //TODO: id or item
-            .putExtra("id", viewModel.patientItem!!.id)
+            //.putExtra("id", viewModel.patientItem!!.id)
             .putExtra("patientItem", viewModel.patientItem)
+        startActivity(intent)
+    }
+
+    private fun showGraphListActivity(view: View) {
+        val intent = Intent(this, GraphListActivity::class.java)
+            //TODO: id or item
+            .putExtra("id", viewModel.patientItem!!.id)
+            //.putExtra("patientItem", viewModel.patientItem)
         startActivity(intent)
     }
 }
