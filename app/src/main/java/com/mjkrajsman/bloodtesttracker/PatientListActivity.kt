@@ -51,6 +51,11 @@ class PatientListActivity : AppCompatActivity() {
         })
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     //---===data input to intent===---
     private fun showPatientActivity(patientItem: PatientItem) {
         val intent = Intent(this, PatientActivity::class.java)

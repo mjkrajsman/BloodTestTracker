@@ -44,6 +44,11 @@ class PatientActivity : AppCompatActivity() {
         updateUI(viewModel.patientItem!!)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun updateUI(item: PatientItem){
         if(item.secondName!=null) {
             patient_toolbar_layout.title = getString(

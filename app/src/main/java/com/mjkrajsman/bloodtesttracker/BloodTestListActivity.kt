@@ -59,6 +59,11 @@ class BloodTestListActivity : AppCompatActivity() {
         updateTitle(viewModel.patientItem!!)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     private fun updateTitle(item: PatientItem) {
         if(item.secondName!=null) {
             blood_test_list_toolbar_layout.title = getString(
