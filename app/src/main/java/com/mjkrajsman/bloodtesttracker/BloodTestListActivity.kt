@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mjkrajsman.bloodtesttracker.model.BloodTestItem
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
-import com.mjkrajsman.bloodtesttracker.recycler.BloodTestAdapter
+import com.mjkrajsman.bloodtesttracker.recycler.BloodTestListAdapter
 import com.mjkrajsman.bloodtesttracker.viewmodel.BloodTestListViewModel
 import com.mjkrajsman.bloodtesttracker.viewmodel.BloodTestListViewModelFactory
 import kotlinx.android.synthetic.main.activity_blood_test_list.*
@@ -26,7 +26,7 @@ class BloodTestListActivity : AppCompatActivity() {
     //---===RecyclerView===---
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private val viewAdapter by lazy { BloodTestAdapter(this::showBloodTestActivity, this) }
+    private val viewAdapter by lazy { BloodTestListAdapter(this::showBloodTestActivity, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +49,13 @@ class BloodTestListActivity : AppCompatActivity() {
             layoutManager = viewManager
             adapter = viewAdapter
         }
+        viewModel.bloodTestItems.observe(this, Observer { items ->
+            items?.let { viewAdapter.setItems(it) }
+        })
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.bloodTests.observe(this, Observer { items ->
-            items?.let { viewAdapter.setItems(it) }
-        })
         updateTitle(viewModel.patientItem!!)
     }
 

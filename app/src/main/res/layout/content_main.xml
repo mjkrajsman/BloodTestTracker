@@ -19,6 +19,15 @@
             android:id="@+id/button_patient_list"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"/>
+    <TextView
+            android:text="DebugTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/debug_text"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/button_patient_list"
+    />
     <!--<Button-->
             <!--android:text="@string/random_patient"-->
             <!--android:layout_width="match_parent"-->

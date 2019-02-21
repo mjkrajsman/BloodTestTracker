@@ -84,4 +84,5 @@
     <string name="monocyte_percent">MO%%: </string>
     <string name="monocyte_percent_template">MO%%: %1$s</string>
     <string name="dash">—</string>
+    <string name="title_activity_graph_list">GraphListActivity</string>
 </resources>

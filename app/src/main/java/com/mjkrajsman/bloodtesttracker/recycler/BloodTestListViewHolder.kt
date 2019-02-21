@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.blood_test_list_item.view.*
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class BloodTestViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class BloodTestListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val testDateTextView = itemView.blood_test_date_text
     private val bloodTestItemLayout = itemView.blood_test_item_layout
 

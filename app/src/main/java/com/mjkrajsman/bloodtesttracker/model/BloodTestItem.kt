@@ -6,7 +6,7 @@ import java.io.Serializable
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class BloodTestItem(
+data class BloodTestItem(
     val id: Int,
     val patientId: Int,
     val testDate: DateTime,
@@ -56,4 +56,35 @@ class BloodTestItem(
         lymphocytePercent = bloodTest.lymphocytePercent,
         monocytePercent = bloodTest.monocytePercent
     )
+
+//    println(map["key"])
+//    map["key"] = value
+    companion object {
+        val abbreviationTranslator: Map<String, String> = mapOf(
+            "redBloodCells" to "RBC",
+            "whiteBloodCells" to "WBC",
+            "platelets" to "PLT",
+            "hemoglobin" to "HGB",
+            "hematocrit" to "HCT",
+            "meanCorpuscularVolume" to "MCV",
+            "meanCorpuscularHemoglobin" to "MCH",
+            "meanCorpuscularHemoglobinConcentration" to "MCHC",
+            "redCellDistributionWidth" to "RDW",
+            "meanPlateletVolume" to "MPV",
+            "neutrophilCount" to "NE#",
+            "basophilCount" to "BA#",
+            "eosinophilCount" to "EO#",
+            "lymphocyteCount" to "LY#",
+            "monocyteCount" to "MO#",
+            "neutrophilPercent" to "NE%",
+            "basophilPercent" to "BA%",
+            "eosinophilPercent" to "EO%",
+            "lymphocytePercent" to "LY%",
+            "monocytePercent" to "MO%"
+        )
+
+        fun getAbbreviation(parameter: String): String {
+            return abbreviationTranslator[parameter] ?: parameter
+        }
+    }
 }

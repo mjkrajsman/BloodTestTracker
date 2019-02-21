@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mjkrajsman.bloodtesttracker.recycler.PatientAdapter
+import com.mjkrajsman.bloodtesttracker.recycler.PatientListAdapter
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
 import com.mjkrajsman.bloodtesttracker.viewmodel.PatientListViewModel
 import kotlinx.android.synthetic.main.activity_patient_list.*
@@ -23,7 +23,7 @@ class PatientListActivity : AppCompatActivity() {
     //---===RecyclerView===---
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private val viewAdapter by lazy { PatientAdapter(this::showPatientActivity, this)}
+    private val viewAdapter by lazy { PatientListAdapter(this::showPatientActivity, this)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class PatientListActivity : AppCompatActivity() {
             adapter = viewAdapter
         }
 
-        viewModel.patients.observe(this, Observer { items ->
+        viewModel.patientItems.observe(this, Observer { items ->
             items?.let { viewAdapter.setItems(it) }
         })
     }

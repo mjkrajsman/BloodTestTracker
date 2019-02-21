@@ -21,6 +21,10 @@ interface BloodTestDAO {
     @Query("SELECT patient_id FROM blood_tests WHERE id=:bloodTestId")
     fun getPatientByBloodTestId(bloodTestId: Int): Int
 
+    //TODO: any workaround for this? :testName as parameter doesn't work
+    @Query("SELECT  id, patient_id, test_date, :testName FROM blood_tests WHERE patient_id=:patientId")
+    fun getBloodTestsByPatientIdAndTestName(patientId: Int, testName: String): LiveData<List<BloodTest>>
+
     @Insert
     fun insertBloodTest(vararg bloodTests: BloodTest)
 

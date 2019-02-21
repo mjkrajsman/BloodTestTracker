@@ -37,6 +37,8 @@ class PatientActivity : AppCompatActivity() {
         patient_toolbar_layout.setBackgroundColor(toolbarColor)
 
         button_blood_tests.setOnClickListener(this::showBloodTestListActivity)
+        button_graphs.setOnClickListener(this::showGraphListActivity)
+
     }
 
     override fun onStart() {
@@ -87,8 +89,8 @@ class PatientActivity : AppCompatActivity() {
     private fun showGraphListActivity(view: View) {
         val intent = Intent(this, GraphListActivity::class.java)
             //TODO: id or item
-            .putExtra("id", viewModel.patientItem!!.id)
-            //.putExtra("patientItem", viewModel.patientItem)
+            //.putExtra("id", viewModel.patientItem!!.id)
+            .putExtra("patientItem", viewModel.patientItem)
         startActivity(intent)
     }
 }

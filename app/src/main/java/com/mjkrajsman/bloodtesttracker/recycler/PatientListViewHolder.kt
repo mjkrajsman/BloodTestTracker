@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.patient_list_item.view.*
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class PatientViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class PatientListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     private val nameTextView = itemView.patient_name_text
     private val birthDateAgeTextView = itemView.patient_birth_date_age_text
     private val patientItemLayout = itemView.patient_item_layout

@@ -24,6 +24,7 @@
                 android:fitsSystemWindows="true"
                 app:toolbarId="@+id/blood_test_list_toolbar"
                 app:title="@string/title_activity_blood_test_list">
+
             <androidx.appcompat.widget.Toolbar
                     android:id="@+id/blood_test_list_toolbar"
                     android:layout_height="?attr/actionBarSize"

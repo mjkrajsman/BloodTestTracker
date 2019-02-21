@@ -3,18 +3,12 @@ package com.mjkrajsman.bloodtesttracker.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Transformations
 import com.mjkrajsman.bloodtesttracker.model.Patient
 import com.mjkrajsman.bloodtesttracker.model.PatientItem
-import com.mjkrajsman.bloodtesttracker.model.RandomPatientGenerator
 import com.mjkrajsman.bloodtesttracker.model.db.AppDatabase
-import com.mjkrajsman.bloodtesttracker.model.db.PatientDAO
 import com.mjkrajsman.bloodtesttracker.repo.PatientRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -22,8 +16,8 @@ import kotlin.coroutines.CoroutineContext
  */
 class PatientListViewModel(application: Application): AndroidViewModel(application), ColorInterface {
     //TODO: Dummy data should be replaced by permanent data set in the future.
-    private val repository: PatientRepository
-    val patients: LiveData<List<Patient>>
+    private val patientRepository: PatientRepository
+    val patientItems: LiveData<List<PatientItem>>
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
@@ -31,12 +25,29 @@ class PatientListViewModel(application: Application): AndroidViewModel(applicati
 
     init {
         val patientDAO = AppDatabase.getDatabase(application, scope).patientDAO()
-        repository = PatientRepository(patientDAO)
-        patients = repository.listLiveData
+        patientRepository = PatientRepository(patientDAO)
+        patientItems = getPatientItemsByPatientId()//patientRepository.listLiveData
     }
 
     fun insert(patient: Patient) = scope.launch(Dispatchers.IO) {
-        repository.insert(patient)
+        patientRepository.insert(patient)
+    }
+
+    private fun getPatientItemsByPatientId(): LiveData<List<PatientItem>> {
+        return runBlocking {
+            Transformations.map(patientRepository.listLiveData
+            ) { data -> makePatientItemsFromPatients(data) }
+        }
+    }
+
+    private fun makePatientItemsFromPatients(patients: List<Patient>): List<PatientItem> {
+        val res = ArrayList<PatientItem>()
+        var patientItem: PatientItem
+        for (item in patients) {
+            patientItem = PatientItem(item)
+            res.add(patientItem)
+        }
+        return res
     }
 
     override fun onCleared() {

@@ -15,23 +15,31 @@ import kotlin.coroutines.CoroutineContext
 /**
  * Created by: Maciej Janusz Krajsman
  */
-class BloodTestListViewModel(application: Application, item: PatientItem?): AndroidViewModel(application), ColorInterface  {
-    val patientItem: PatientItem? = item
+class GraphViewModel(application: Application, item: PatientItem?, tName: String): AndroidViewModel(application), ColorInterface  {
     private val bloodTestRepository: BloodTestRepository
-    val bloodTestItems: LiveData<List<BloodTestItem>>
+    lateinit var bloodTestItems: LiveData<List<BloodTestItem>>
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
     private val scope = CoroutineScope(coroutineContext)
 
+    val patientItem: PatientItem? = item
+    val testName: String = tName
+
     init {
         val bloodTestDAO = AppDatabase.getDatabase(application, scope).bloodTestDAO()
         bloodTestRepository = BloodTestRepository(bloodTestDAO)
-        bloodTestItems = getBloodTestItemsByPatientId(patientItem!!.id)
+        runBlocking {
+            withContext(Dispatchers.IO) {
+                bloodTestItems = getBloodTestItemsByPatientId(patientItem!!.id)
+            }
+        }
     }
 
-    fun insert(bloodTest: BloodTest) = scope.launch(Dispatchers.IO) {
-        bloodTestRepository.insert(bloodTest)
+    private fun getBloodTestsByPatientIdAndTestName(bloodTestId: Int, testName: String): LiveData<List<BloodTest>> {
+        return runBlocking {
+            bloodTestRepository.getBloodTestsByPatientIdAndTestName(bloodTestId, testName)
+        }
     }
 
     private fun getBloodTestItemsByPatientId(bloodTestId: Int): LiveData<List<BloodTestItem>> {
@@ -55,4 +63,5 @@ class BloodTestListViewModel(application: Application, item: PatientItem?): Andr
         super.onCleared()
         parentJob.cancel()
     }
+
 }

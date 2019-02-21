@@ -9,10 +9,27 @@
         android:layout_height="match_parent"
         tools:context=".GraphActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/text_margin"
-            android:text="@string/patient_names"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <!--<com.jjoe64.graphview.GraphView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dip"-->
+                <!--android:id="@+id/test_graph" />-->
+
+        <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/test_graph"
+                android:layout_width="match_parent"
+                android:layout_height="400dp" />
+
+        <TextView
+                android:id="@+id/test_name_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:text="@string/patient_names"/>
+    </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

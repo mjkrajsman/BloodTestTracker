@@ -31,4 +31,9 @@ class BloodTestRepository(private val bloodTestDAO: BloodTestDAO) {
     suspend fun getPatientByBloodTestId(bloodTestId: Int): Int {
         return bloodTestDAO.getPatientByBloodTestId(bloodTestId)
     }
+
+    @WorkerThread
+    suspend fun getBloodTestsByPatientIdAndTestName(patientId: Int, testName: String): LiveData<List<BloodTest>>{
+        return bloodTestDAO.getBloodTestsByPatientIdAndTestName(patientId, testName)
+    }
 }

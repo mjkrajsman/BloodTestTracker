@@ -17,11 +17,13 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import net.danlew.android.joda.JodaTimeAndroid
 
+
 /**
  * Created by: Maciej Janusz Krajsman
  */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val viewModel: MainViewModel by lazy { ViewModelProviders.of(this).get(MainViewModel::class.java) }
+    var bloodTests: MutableList<String> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //button listeners TODO: replace with final content of MainActivity
         button_patient_list.setOnClickListener(this::showPatientListActivity)
+
     }
 
     //---===DrawerLayout actions===--- TODO: implement those
@@ -106,4 +109,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .putExtra("color", viewModel.getRandomColor())
         startActivity(intent)
     }
+
 }
